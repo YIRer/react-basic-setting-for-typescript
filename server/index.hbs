@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="robots" content="index,follow">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="theme-color" content="#ff6a29">
+    <!-- react helmet -->
+    {{#if preloadAsset}} {{{preloadAsset}}} {{/if}}
+    {{#if helmet}} {{{helmet}}} {{/if}}
+    <title></title>
+    <!--
+      manifest.json provides metadata used when your web app is added to the
+      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
+    -->
+    <!-- Start of favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/sources/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/sources/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/sources/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/sources/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/sources/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/sources/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/sources/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/sources/favicon/apple-touch-icon-152x152.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/sources/favicon/apple-touch-icon-180x180.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="192x192" href="/sources/favicon/apple-icon-precomposed.png" />
+    <link rel="icon" type="image/png" href="/sources/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/sources/favicon/android-icon-192x192.png" sizes="192x192" />
+    <link rel="icon" type="image/png" href="/sources/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/sources/favicon/favicon-16x16.png" sizes="16x16" />
+    {{{chunksCss}}}
+    <link rel="manifest" href="./manifest.json" /> {{#if production}} {{/if}}
+  </head>
+  <body cz-shortcut-listen="true">
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="root">{{{html}}}</div>
+      {{{chunks}}}
+      {{{preloadedState}}}
+      {{{loadableState}}}
+  </body>
+  <script>
+      window.fbAsyncInit = function() {
+        const fbApiKey = {{{fbKey}}};
+        FB.init({
+          appId      : fbApiKey,
+          xfbml      : true,
+          version    : 'v2.12'
+        });
+        FB.AppEvents.logPageView();
+      };
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "https://connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64119401-13"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-64119401-13');
+  </script>
+</html>
