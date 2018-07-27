@@ -1,8 +1,9 @@
 import _ from 'lodash';
-export default (htmlData, preloadAsset, helmetData, html, chunks, chunksCss, preloadedStoreState, fbKey) => {
+export default (htmlData, preloadAsset, helmetData, html, chunks, chunksCss, preloadedStoreState, fbKey, manifestJSON, title) => {
 	const preloadedState = _.isNil(preloadedStoreState) ? null : `<script>window.__PRELOADED_STATE__ = ${JSON.stringify (preloadedStoreState).replace(/\u2028/g, '\\n')
 	.replace(/</g, '\\u003c')};</script>`;
-	const helmet =   _.isNil(helmetData) ? null : `${helmetData.title.toString()}${helmetData.meta.toString()}${helmetData.link.toString()}`;
+	const helmetTitle = helmetData.title.toString()
+	const helmet =   _.isNil(helmetData) ? null : `${helmetTitle.replace('\n','')}${helmetData.meta.toString()}${helmetData.link.toString()}`;
 	const production = process.env.NODE_ENV === 'production';
 	return htmlData({
 		helmet,
@@ -12,7 +13,9 @@ export default (htmlData, preloadAsset, helmetData, html, chunks, chunksCss, pre
 		html,
 		chunks,
 		preloadedState,
-		fbKey
+		fbKey,
+		manifestJSON,
+		title
 	})	
 }
 
@@ -71,4 +74,22 @@ export function stringHTML (htmlData, html, helmet, extraChunks, preloadedState,
       <div id="root">${html}</div>
     `
   )
+}
+
+export function ampTemplate (htmlData, lang, canonical, body, author,  manifest){
+
+	return htmlData({
+		htmlData,
+		lang, canonical, body, author,
+		manifest
+	})	
+}
+
+export function ampErrorTemplate (htmlData, lang, canonical, body, author,  manifest){
+
+	return htmlData({
+		htmlData,
+		lang, canonical, body, author,
+		manifest
+	})	
 }

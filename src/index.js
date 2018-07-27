@@ -8,10 +8,9 @@ const render = Component =>
     <AppContainer>
       <Component />
     </AppContainer>,
-    document.getElementById('root')
+    document.getElementById('root'),
   );
 
 render(App);
-
 
 if (module.hot) module.hot.accept('./components/App', () => render(App));

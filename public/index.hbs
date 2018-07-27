@@ -3,16 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <meta name="robots" content="index,follow">
+    <meta name="robots" content="index, follow">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="theme-color" content="#ff6a29">
+    <title>{{{title}}}</title>
     <!-- react helmet -->
     {{#if preloadAsset}} {{{preloadAsset}}} {{/if}}
     {{#if helmet}} {{{helmet}}} {{/if}}
-    <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/engage-and-retain/web-app-manifest/
-    -->
+    {{#if manifestJSON}} 
+    <script type="application/ld+json">
+      {{{manifestJSON}}}
+    </script>
+     {{/if}}
     <!-- Start of favicons -->
     <meta name="apple-mobile-web-app-status-bar-style" content="#ff6a29">
     <link rel="apple-touch-icon-precomposed" sizes="57x57" href="//static.tasteem.io/images/favicon/apple-icon-57x57.png" />
@@ -38,33 +40,7 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root">{{{html}}}</div>
+    {{#if chunks}} {{{chunks}}} {{/if}}
+    {{#if preloadedState}} {{{preloadedState}}} {{/if}}
   </body>
-  {{#if chunks}} {{{chunks}}} {{/if}}
-  {{#if preloadedState}} {{{preloadedState}}} {{/if}}
-  <script>
-      window.fbAsyncInit = function() {
-        const fbApiKey = {{{fbKey}}};
-        FB.init({
-          appId      : fbApiKey,
-          xfbml      : true,
-          version    : 'v2.12'
-        });
-        FB.AppEvents.logPageView();
-      };
-      (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      }(document, 'script', 'facebook-jssdk'));
-  </script>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-64119401-13"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-64119401-13');
-  </script>
 </html>
