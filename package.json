@@ -10,11 +10,14 @@
   "scripts": {
     "dev": "webpack-dev-server --env.env=dev",
     "dev:bundleanalyzer": "yarn dev --env.addons=bundleanalyzer",
-    "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production webpack -p --env.env=prod",
+    "prebuild": "rimraf bulid",
+    "build": "cross-env NODE_ENV=production yarn prebuild &&  webpack -p --env.env=prod",
     "build:bundleanalyzer": "yarn build --env.addons=bundleanalyzer"
   },
   "dependencies": {
+    "babel-plugin-lodash": "^3.3.4",
+    "lodash": "^4.17.10",
+    "lodash-webpack-plugin": "^0.11.5",
     "react": "^16.4.1",
     "react-delay-render": "^0.1.2",
     "react-dom": "^16.4.1",
@@ -25,6 +28,7 @@
     "semantic-ui-react": "^0.81.3"
   },
   "devDependencies": {
+    "assets-webpack-plugin": "^3.8.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-preset-env": "^1.7.0",
@@ -39,6 +43,8 @@
     "postcss-loader": "^2.1.5",
     "rimraf": "^2.6.2",
     "style-loader": "^0.21.0",
+    "typescript": "^3.0.1",
+    "uglifyjs-webpack-plugin": "^1.2.7",
     "webpack": "^4.15.0",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.8",
